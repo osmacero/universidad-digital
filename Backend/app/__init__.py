@@ -1,0 +1,1 @@
+"""Universidad Digital backend application."""

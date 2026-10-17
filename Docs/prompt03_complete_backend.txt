@@ -1,0 +1,182 @@
+Actúa como Arquitecto de Software Senior y Backend Lead, experto en:
+
+- FastAPI
+- PostgreSQL
+- SQLAlchemy
+- Pydantic
+- Seguridad OWASP
+- Clean Architecture
+- DDD básico
+
+Tu objetivo es COMPLETAR, VALIDAR, REFACTORIZAR Y DOCUMENTAR
+el backend completo del proyecto "Universidad Digital".
+
+## OBJETIVO GENERAL
+
+Completar el backend profesional al 100%, garantizando:
+
+- Seguridad
+- Escalabilidad
+- Mantenibilidad
+- Cumplimiento de estándares internacionales
+
+El backend debe quedar listo para pruebas y para que el frontend
+pueda consumirlo sin cambios estructurales posteriores.
+
+## ARQUITECTURA OBLIGATORIA
+
+Respetar la organización existente por dominio.
+
+Cada módulo debe contener, cuando corresponda:
+
+models.py
+schemas.py
+services.py
+routes.py
+
+Aplicar:
+
+- SRP / principio de responsabilidad única
+- DRY
+- Clean Architecture
+- Tipado explícito
+- Documentación clara
+- Separación de responsabilidades
+
+## SEGURIDAD Y AUTENTICACIÓN
+
+Implementar completamente:
+
+- Autenticación mediante JWT
+- Rutas protegidas por rol
+- Roles:
+  - administrador
+  - docente
+  - estudiante
+- Dependencias de seguridad de FastAPI
+- Principio de mínimo privilegio
+- Manejo centralizado de errores de autenticación
+- No exponer información sensible
+- No almacenar JWT de forma insegura en localStorage
+- Usar HttpOnly Cookies cuando aplique
+
+## CRUD COMPLETO
+
+Implementar CRUD para los dominios requeridos:
+
+- Usuarios
+- Materias
+- Inscripciones
+- Calificaciones
+
+Cada CRUD debe incluir:
+
+- Crear
+- Consultar
+- Actualizar
+- Eliminación lógica cuando aplique
+- Validaciones de reglas de negocio
+
+## MODELO DE DATOS Y RELACIONES
+
+Validar e implementar correctamente las relaciones entre entidades.
+
+Incluir:
+
+- Usuario
+- Rol
+- Materias
+- Inscripciones
+- Calificaciones
+- Tablas asociativas cuando sean necesarias
+- Integridad referencial
+
+## PYDANTIC Y SERIALIZACIÓN
+
+Crear esquemas para:
+
+- Create
+- Update
+- Response
+
+Nunca exponer:
+
+- passwords
+- password hashes
+- campos sensibles
+
+Aplicar validaciones estrictas de entrada.
+
+## MANEJO DE ERRORES
+
+Implementar:
+
+- Excepciones personalizadas
+- Manejo global de errores
+- Respuestas HTTP coherentes
+- Mensajes claros y seguros
+- No revelar lógica interna
+
+## VARIABLES DE ENTORNO
+
+Centralizar configuración en core/config.py.
+
+Proteger mediante variables de entorno:
+
+- JWT_SECRET
+- expiración del token
+- DATABASE_URL
+- credenciales sensibles
+
+## BASE DE DATOS
+
+Utilizar SQLAlchemy + PostgreSQL.
+
+El backend debe:
+
+- gestionar modelos y relaciones
+- permitir creación/mantenimiento del esquema
+- gestionar migraciones básicas
+
+El usuario únicamente debe crear inicialmente la base de datos.
+
+## DEPENDENCIAS
+
+Actualizar requirements.txt con todas las dependencias necesarias.
+
+## DOCUMENTACIÓN
+
+Crear/actualizar README versión 2 incluyendo:
+
+- Descripción del sistema
+- Arquitectura aplicada
+- Estructura de carpetas
+- Seguridad implementada
+- Flujo de autenticación
+- Roles y permisos
+- Cómo levantar el backend
+- Variables de entorno
+- Endpoints principales
+- Próximos pasos: testing y frontend
+
+## VALIDACIÓN FINAL
+
+Al finalizar:
+
+- Revisar todo el backend
+- Validar SRP
+- Validar DRY
+- Validar Clean Architecture
+- Validar seguridad
+- Refactorizar lo necesario
+- Agregar módulos faltantes
+- Confirmar que el backend queda listo para producción y pruebas
+
+## RESULTADO ESPERADO
+
+- Backend completamente funcional
+- Seguridad aplicada
+- Código limpio y documentado
+- Arquitectura profesional
+- Listo para testing
+- Listo para consumo desde el frontend

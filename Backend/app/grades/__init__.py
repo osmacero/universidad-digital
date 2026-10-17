@@ -1,0 +1,1 @@
+"""Academic grade domain."""

@@ -1,0 +1,324 @@
+Actúa como un Arquitecto de Software Senior especializado en:
+
+\- Sistemas Full Stack empresariales
+\- Clean Architecture
+\- FastAPI + React
+\- PostgreSQL + SQLAlchemy
+\- Seguridad OWASP
+\- Calidad de software basada en ISO/IEC 25010
+
+Tu tarea es VALIDAR la estructura actual de carpetas y archivos del proyecto
+"universidad-digital" abierto en este workspace de VS Code.
+
+IMPORTANTE:
+Analiza únicamente la estructura existente.
+NO crees archivos.
+NO modifiques archivos.
+NO elimines archivos.
+NO escribas código.
+NO cambies las tecnologías definidas.
+NO inventes funcionalidades nuevas.
+
+\==================================================
+1\. CONTEXTO DEL SISTEMA
+\==================================================
+
+El proyecto "Universidad Digital" es una plataforma de gestión académica universitaria.
+
+Debe permitir:
+
+\- Gestión de usuarios con roles:
+&#x20; \- Administrador
+&#x20; \- Docente
+&#x20; \- Estudiante
+\- Gestión de materias
+\- Inscripción de estudiantes a materias
+\- Registro y consulta de calificaciones
+\- Autenticación y autorización segura
+\- Reportes académicos básicos
+
+\==================================================
+2\. ARQUITECTURA OBJETIVO
+\==================================================
+
+El sistema debe seguir una arquitectura por capas:
+
+Frontend
+\- React
+\- Vite
+\- TypeScript
+\- Interfaz de usuario
+
+API / Controllers
+\- FastAPI
+\- Recepción de solicitudes HTTP
+\- Validación de entrada
+\- Control de acceso
+
+Service Layer
+\- Reglas de negocio
+\- Procesos académicos
+\- Coordinación de operaciones
+
+Persistence Layer
+\- SQLAlchemy
+\- PostgreSQL
+\- Modelos y acceso a datos
+\- Integridad de la información
+
+Flujo esperado:
+
+Usuario
+&#x20;  ↓
+React
+&#x20;  ↓ HTTP / JSON
+FastAPI
+&#x20;  ↓
+Services
+&#x20;  ↓
+SQLAlchemy
+&#x20;  ↓
+PostgreSQL
+
+Cada capa debe:
+
+\- Tener responsabilidades claramente definidas
+\- Respetar separación de responsabilidades (SoC)
+\- Evitar dependencias indebidas entre capas
+\- Facilitar mantenibilidad y escalabilidad
+
+\==================================================
+3\. ESTRUCTURA ACTUAL ESPERADA
+\==================================================
+
+Backend:
+
+backend/
+└── app/
+&#x20;   ├── auth/
+&#x20;   ├── users/
+&#x20;   ├── subjects/
+&#x20;   ├── enrollments/
+&#x20;   ├── grades/
+&#x20;   ├── core/
+&#x20;   └── main.py
+
+Responsabilidades conceptuales:
+
+auth/
+\- autenticación
+\- autorización
+\- login
+\- JWT
+\- roles y permisos
+
+users/
+\- gestión de usuarios
+
+subjects/
+\- gestión de materias
+
+enrollments/
+\- gestión de inscripciones
+
+grades/
+\- gestión de calificaciones
+
+core/
+\- configuración global
+\- seguridad
+\- configuración de base de datos
+\- elementos transversales
+
+main.py
+\- punto de entrada de FastAPI
+
+
+Frontend:
+
+frontend/
+└── src/
+&#x20;   ├── api/
+&#x20;   ├── auth/
+&#x20;   ├── components/
+&#x20;   ├── context/
+&#x20;   ├── hooks/
+&#x20;   ├── layouts/
+&#x20;   ├── pages/
+&#x20;   ├── routes/
+&#x20;   ├── services/
+&#x20;   ├── styles/
+&#x20;   ├── utils/
+&#x20;   └── main.tsx
+
+Responsabilidades conceptuales:
+
+api/
+\- comunicación con el backend
+
+auth/
+\- autenticación del lado cliente
+
+components/
+\- componentes reutilizables
+
+context/
+\- estado global
+
+hooks/
+\- lógica reutilizable de React
+
+layouts/
+\- estructuras generales de interfaz
+
+pages/
+\- vistas principales
+
+routes/
+\- navegación y rutas protegidas
+
+services/
+\- lógica y servicios del frontend
+
+styles/
+\- estilos globales
+
+utils/
+\- funciones auxiliares
+
+main.tsx
+\- punto de entrada de React
+
+
+Además existen:
+
+database/
+\- elementos relacionados con PostgreSQL y persistencia
+
+docs/
+\- documentación técnica y funcional
+
+\==================================================
+4\. MODELO FUNCIONAL QUE LA ARQUITECTURA DEBE SOPORTAR
+\==================================================
+
+Entidades principales:
+
+\- Usuario
+\- Rol
+\- Usuario\_Rol
+\- Materia
+\- Periodo\_Academico
+\- Inscripcion
+\- Calificacion
+
+Relaciones conceptuales:
+
+\- Usuario ↔ Rol = muchos a muchos
+\- Usuario → Inscripción = uno a muchos
+\- Materia → Inscripción = uno a muchos
+\- Periodo Académico → Inscripción = uno a muchos
+\- Inscripción → Calificación = uno a muchos
+
+\==================================================
+5\. SEGURIDAD Y CALIDAD
+\==================================================
+
+Evalúa si la estructura permite implementar adecuadamente:
+
+\- Hash seguro de contraseñas
+\- Autenticación y autorización
+\- JWT
+\- Roles y permisos
+\- Validación de datos con Pydantic
+\- Sanitización y validación de entradas
+\- Protección de rutas
+\- Manejo centralizado de errores
+\- Principio de mínimo privilegio
+\- Protección de datos sensibles
+\- Buenas prácticas OWASP
+
+\==================================================
+6\. CRITERIOS DE EVALUACIÓN
+\==================================================
+
+Analiza la estructura actual del workspace y responde:
+
+1\. ¿La estructura de carpetas cumple razonablemente con una arquitectura limpia y por capas?
+
+2\. ¿Existe mezcla o riesgo de mezcla de responsabilidades?
+
+3\. ¿Los dominios funcionales están correctamente separados?
+
+4\. ¿La estructura puede soportar el modelo entidad-relación planteado?
+
+5\. ¿La organización actual facilita mantenibilidad y escalabilidad?
+
+6\. ¿Existen riesgos de seguridad derivados de la estructura?
+
+7\. ¿Qué carpetas o archivos importantes podrían faltar?
+
+8\. ¿Hay carpetas o archivos innecesarios o mal ubicados?
+
+9\. ¿main.py y main.tsx están ubicados correctamente?
+
+10\. ¿Qué refactorizaciones estructurales recomendarías antes de comenzar la implementación?
+
+\==================================================
+7\. FORMATO DE RESPUESTA
+\==================================================
+
+Entrega el diagnóstico utilizando exactamente estas secciones:
+
+A. CUMPLIMIENTOS CORRECTOS
+
+Explica qué elementos de la arquitectura están correctamente planteados.
+
+B. PROBLEMAS DETECTADOS
+
+Describe problemas, vacíos o riesgos de la estructura actual.
+
+C. VIOLACIONES GRAVES DE ARQUITECTURA
+
+Indica únicamente violaciones realmente existentes.
+Si todavía no pueden confirmarse porque las carpetas están vacías, indícalo expresamente.
+
+D. RIESGOS DE SEGURIDAD
+
+Identifica riesgos que la estructura pueda facilitar o que deban prevenirse durante la implementación.
+
+E. ELEMENTOS FALTANTES
+
+Indica carpetas, archivos o capas que convendría incorporar.
+
+F. RECOMENDACIONES CONCRETAS Y ACCIONABLES
+
+Presenta recomendaciones priorizadas:
+
+\- Prioridad alta
+\- Prioridad media
+\- Prioridad baja
+
+G. VEREDICTO DEL ARQUITECTO
+
+Clasifica la estructura actual como una de estas opciones:
+
+\- Adecuada para iniciar implementación
+\- Adecuada con ajustes menores
+\- Requiere refactorización antes de implementar
+\- Arquitectura inadecuada
+
+Justifica brevemente el veredicto.
+
+\==================================================
+8\. RESTRICCIÓN FINAL
+\==================================================
+
+Esta es únicamente una AUDITORÍA ESTRUCTURAL.
+
+No implementes las recomendaciones todavía.
+No generes código.
+No modifiques el workspace.
+No crees archivos ni carpetas.
+
+Primero entrega exclusivamente el diagnóstico.
