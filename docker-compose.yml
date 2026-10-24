@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: universidad-digital-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: universidad_digital
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: change_me
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app_user -d universidad_digital"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./Backend
+    container_name: universidad-digital-api
+    restart: unless-stopped
+    environment:
+      APP_NAME: Universidad Digital API
+      ENVIRONMENT: development
+      DATABASE_URL: postgresql+psycopg://app_user:change_me@db:5432/universidad_digital
+      JWT_SECRET_KEY: docker_development_secret_key_change_before_production_123456
+      JWT_ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: 30
+      CORS_ORIGINS: '["http://localhost:5173"]'
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
