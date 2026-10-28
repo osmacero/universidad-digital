@@ -1,8 +1,7 @@
+import {API_URL} from '../config'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Dashboard.css'
-
-const API_URL = 'http://127.0.0.1:8000'
 
 interface User {
   email?: string
